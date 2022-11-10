@@ -82,7 +82,7 @@ function remove(req: Request, res: Response) {
 
     const index = dogs.indexOf(existingDog);
 
-    dogs = dogs.splice(index, 1);
+    dogs.splice(index, 1);
 
     res.send(`Dog ${existingDog.name} removed.`);
 }
