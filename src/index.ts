@@ -8,9 +8,9 @@ const app: Express = express()
 const port = 3000
 
 
-
-
 import { catsRouter } from './routers/catRouter';
+
+import { dogsRouter } from './routers/dogRouter';
 
 /**
  * Middleware setup
@@ -23,6 +23,8 @@ app.use(bodyParser.json());
  */
 
 app.use('/cats', catsRouter);
+
+app.use('/dogs', dogsRouter);
 
 // Dogs
 // Cats
