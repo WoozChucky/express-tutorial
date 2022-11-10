@@ -1,7 +1,7 @@
 import { Cat } from "../models/cat";
-import express, { Express, Request, Response } from 'express';
+import { Request, Response } from 'express';
 
-let cats: Cat[] = [];
+const cats: Cat[] = [];
 
 cats.push(new Cat('Oscar', 3, 10, 'Male', 'black'));
 

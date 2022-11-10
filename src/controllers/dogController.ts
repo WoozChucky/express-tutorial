@@ -1,7 +1,7 @@
 import { Dog } from "../models/dog";
-import express, { Express, Request, Response } from 'express';
+import { Request, Response } from 'express';
 
-let dogs: Dog[] = [];
+const dogs: Dog[] = [];
 
 dogs.push(new Dog('Kelly', 2, 20, 'Female', 'brown'));
 
