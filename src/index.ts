@@ -1,16 +1,21 @@
-const express = require('express')
-const bodyParser = require('body-parser');
-const catsRouter = require('./routers/catRouter');
-const app = express()
+import express, { Express, Request, Response } from 'express';
+import bodyParser from 'body-parser';
+
+import dotenv from 'dotenv';
+dotenv.config();
+
+const app: Express = express()
 const port = 3000
 
 
 
 
+import { catsRouter } from './routers/catRouter';
+
 /**
  * Middleware setup
  */
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 
 /**
@@ -33,7 +38,7 @@ app.use('/cats', catsRouter);
 
 
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
     res.send('Hello World!')
 })
 

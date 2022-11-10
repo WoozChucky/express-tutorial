@@ -1,6 +1,8 @@
-const express = require('express');
-const catsRouter = express.Router();
-const catsController = require('../controllers/catController');
+import express from 'express';
+import { catsController } from '../controllers/catController';
+
+export const catsRouter = express.Router();
+
 
 // find all
 catsRouter.get('/', catsController.findAll);
@@ -17,4 +19,3 @@ catsRouter.put('/:id', catsController.update);
 // delete
 catsRouter.delete('/:id', catsController.remove);
 
-module.exports = catsRouter;

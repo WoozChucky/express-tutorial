@@ -1,14 +1,15 @@
-const Cat = require("../models/cat");
+import { Cat } from "../models/cat";
+import express, { Express, Request, Response } from 'express';
 
-let cats = [];
+let cats: Cat[] = [];
 
 cats.push(new Cat('Oscar', 3, 10, 'Male', 'black'));
 
-function findAll(req, res) {
+function findAll(req: Request, res: Response) {
     res.send(cats);
 }
 
-function findOne(req, res) {
+function findOne(req: Request, res: Response) {
 
     const { id } = req.params;
 
@@ -17,7 +18,7 @@ function findOne(req, res) {
     res.send(result);
 }
 
-function create(req, res) {
+function create(req: Request, res: Response) {
 
     const { name, age, weight, sex, color } = req.body;
 
@@ -28,7 +29,7 @@ function create(req, res) {
     res.send(newCat);
 }
 
-function update(req, res) {
+function update(req: Request, res: Response) {
 
     const { id } = req.params;
 
@@ -68,7 +69,7 @@ function update(req, res) {
 
 }
 
-function remove(req, res) {
+function remove(req: Request, res: Response) {
 
     const { id } = req.params;
 
@@ -86,7 +87,7 @@ function remove(req, res) {
     res.send(`Cat ${existingCat.name} removed.`);
 }
 
-module.exports = {
+export const catsController = {
     findAll,
     findOne,
     create,
