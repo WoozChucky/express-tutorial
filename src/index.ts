@@ -12,6 +12,8 @@ import { catsRouter } from './routers/catRouter';
 
 import { dogsRouter } from './routers/dogRouter';
 
+import {ownersRouter} from "./routers/ownerRouter";
+
 /**
  * Middleware setup
  */
@@ -26,18 +28,7 @@ app.use('/cats', catsRouter);
 
 app.use('/dogs', dogsRouter);
 
-// Dogs
-// Cats
-// Owners
-
-// Router Dogs
-// Router Cats
-// Router Owners
-
-// Controller Dogs
-// Controller Cats
-// Controller Owners
-
+app.use('/owners', ownersRouter);
 
 
 app.get('/', (req: Request, res: Response) => {

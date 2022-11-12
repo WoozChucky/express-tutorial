@@ -1,19 +1,16 @@
 import { Cat } from "../models/cat";
 import { Request, Response } from 'express';
-
-const cats: Cat[] = [];
-
-cats.push(new Cat('Oscar', 3, 10, 'Male', 'black', ''));
+import {Database} from "../models/database";
 
 function findAll(req: Request, res: Response) {
-    res.send(cats);
+    res.send(Database.cats);
 }
 
 function findOne(req: Request, res: Response) {
 
     const { id } = req.params;
 
-    const result = cats.find(cat => cat.id === id);
+    const result = Database.cats.find(cat => cat.id === id);
 
     res.send(result);
 }
@@ -24,7 +21,7 @@ function create(req: Request, res: Response) {
 
     const newCat = new Cat(name, age, weight, sex, color, ownerId);
 
-    cats.push(newCat);
+    Database.cats.push(newCat);
 
     res.send(newCat);
 }
@@ -33,7 +30,7 @@ function update(req: Request, res: Response) {
 
     const { id } = req.params;
 
-    const existingCat = cats.find(cat => cat.id === id);
+    const existingCat = Database.cats.find(cat => cat.id === id);
 
     if (existingCat === null || existingCat === undefined) {
         res.send('Cat not found');
@@ -42,34 +39,34 @@ function update(req: Request, res: Response) {
 
     const { name, age, weight, sex, color, ownerId } = req.body;
 
-    const index = cats.indexOf(existingCat);
+    const index = Database.cats.indexOf(existingCat);
 
 
-    if (cats[index].name !== name) {
-        cats[index].name = name;
+    if (Database.cats[index].name !== name) {
+        Database.cats[index].name = name;
     }
 
-    if (cats[index].age !== age) {
-        cats[index].age = age;
+    if (Database.cats[index].age !== age) {
+        Database.cats[index].age = age;
     }
 
-    if (cats[index].weight !== weight) {
-        cats[index].weight = weight;
+    if (Database.cats[index].weight !== weight) {
+        Database.cats[index].weight = weight;
     }
 
-    if (cats[index].sex !== sex) {
-        cats[index].sex = sex;
+    if (Database.cats[index].sex !== sex) {
+        Database.cats[index].sex = sex;
     }
 
-    if (cats[index].color !== color) {
-        cats[index].color = color;
+    if (Database.cats[index].color !== color) {
+        Database.cats[index].color = color;
     }
 
-    if (cats[index].ownerId !== ownerId) {
-        cats[index].ownerId = ownerId;
+    if (Database.cats[index].ownerId !== ownerId) {
+        Database.cats[index].ownerId = ownerId;
     }
 
-    res.send(cats[index]);
+    res.send(Database.cats[index]);
 
 }
 
@@ -77,16 +74,16 @@ function remove(req: Request, res: Response) {
 
     const { id } = req.params;
 
-    const existingCat = cats.find(cat => cat.id === id);
+    const existingCat = Database.cats.find(cat => cat.id === id);
 
     if (existingCat === null || existingCat === undefined) {
         res.send('Cat not found');
         return;
     }
 
-    const index = cats.indexOf(existingCat);
+    const index = Database.cats.indexOf(existingCat);
 
-    cats.splice(index, 1);
+    Database.cats.splice(index, 1);
 
     res.send(`Cat ${existingCat.name} removed.`);
 }
