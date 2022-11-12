@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 
 const cats: Cat[] = [];
 
-cats.push(new Cat('Oscar', 3, 10, 'Male', 'black'));
+cats.push(new Cat('Oscar', 3, 10, 'Male', 'black', ''));
 
 function findAll(req: Request, res: Response) {
     res.send(cats);
@@ -20,9 +20,9 @@ function findOne(req: Request, res: Response) {
 
 function create(req: Request, res: Response) {
 
-    const { name, age, weight, sex, color } = req.body;
+    const { name, age, weight, sex, color, ownerId } = req.body;
 
-    const newCat = new Cat(name, age, weight, sex, color);
+    const newCat = new Cat(name, age, weight, sex, color, ownerId);
 
     cats.push(newCat);
 
@@ -40,7 +40,7 @@ function update(req: Request, res: Response) {
         return;
     }
 
-    const { name, age, weight, sex, color } = req.body;
+    const { name, age, weight, sex, color, ownerId } = req.body;
 
     const index = cats.indexOf(existingCat);
 
@@ -63,6 +63,10 @@ function update(req: Request, res: Response) {
 
     if (cats[index].color !== color) {
         cats[index].color = color;
+    }
+
+    if (cats[index].ownerId !== ownerId) {
+        cats[index].ownerId = ownerId;
     }
 
     res.send(cats[index]);
